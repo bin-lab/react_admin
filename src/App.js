@@ -22,13 +22,3 @@ export default class App extends Component{
 
 }
 
-
-
-//import { message, Button } from 'antd';
-// handleClick = () => {
-//     message.info('This is a normal message');
-// };
-//
-// render () {
-//     return <Button type="primary" onClick={this.handleClick}>Primary</Button>
-// }

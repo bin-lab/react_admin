@@ -1,7 +1,11 @@
 import React, {Component} from 'react'
-import { Form, Icon, Input, Button } from 'antd';
+import { Form, Icon, Input, Button, message } from 'antd';
+import {Redirect} from 'react-router-dom';
 import './login.less'
 import logo from './images/blue.png';
+import {reqlogin} from "../../api";
+import storageUtils from "../../utils/storageUtils";
+import memoryUtils from "../../utils/memoryUtils";
 /*
 登陆的路由界面
  */
@@ -13,9 +17,72 @@ import logo from './images/blue.png';
         //阻止事件的默认提交功能额
         event.preventDefault();
 
-        this.props.form.validateFields((err, values) => {
+        //await 使用 需要在当前方法左边添加 async
+        this.props.form.validateFields(async (err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                //console.log('Received values of form: ', values);
+
+                //请求的参数
+                const {username,password} = values;
+
+                /*
+                    ajax两种写法
+                    1.简单使用
+
+
+                     (1)请求登录方法
+
+
+                    2.await 使用
+                 */
+
+                //(1)请求登录方法
+                // reqlogin(username,password).then(response => {
+                //     console.log("成功了",response.data)
+                // }).catch(error => {
+                //     console.log("失败了",error)
+                // });
+
+
+                //TODO : 待测试
+
+                //(2)请求登录方法
+               const response = await reqlogin(username,password);
+
+
+                //请求完成后处理返回的数据状态
+                const result = response.data;
+                //const result = {status:0};
+                if (result.status === 0) {
+                    //登陆成功
+                    message.success('登陆成功');
+
+                    //登陆成功后 存储当前用户信息
+
+                    const user = result.data;
+                    //保存用户到内存中
+                    memoryUtils.user = user;
+                    //保存用户信息到本地持久层
+                    storageUtils.saveUser(user);
+
+
+
+
+                    /*
+                        成功后跳转界面
+                        不需要回退到登陆界面使用replace();
+                        需要回退到登陆界面 push();
+                     */
+
+                    this.props.history.replace('/');
+
+
+                } else {
+                    //登陆失败
+                    message.error(result.message);
+                }
+
+
             } else {
                 console.log('校验失败');
             }
@@ -28,6 +95,13 @@ import logo from './images/blue.png';
     };
 
     render() {
+
+        //如果用户已经登陆，自动跳转管理界面
+        const  user = memoryUtils.user;
+        if (user && user._id) {
+            return <Redirect to='/'/>
+        }
+
         const { getFieldDecorator } = this.props.form;
         return (
             <div className='login'>
@@ -104,9 +178,6 @@ export default WrapLogin;
             返回值是函数
     2.高阶组件
  */
-
-
-
 
 
 /*
