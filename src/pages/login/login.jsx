@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Form, Icon, Input, Button, message } from 'antd';
 import {Redirect} from 'react-router-dom';
 import './login.less'
-import logo from './images/blue.png';
+import logo from '../../assets/images/blue.png';
 import {reqlogin} from "../../api";
 import storageUtils from "../../utils/storageUtils";
 import memoryUtils from "../../utils/memoryUtils";
@@ -60,13 +60,11 @@ import memoryUtils from "../../utils/memoryUtils";
                     //登陆成功后 存储当前用户信息
 
                     const user = result.data;
+                    //const user = {"_id":1111,"username":'admin'};
                     //保存用户到内存中
                     memoryUtils.user = user;
                     //保存用户信息到本地持久层
                     storageUtils.saveUser(user);
-
-
-
 
                     /*
                         成功后跳转界面
