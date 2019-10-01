@@ -4,6 +4,7 @@ import { Layout, Menu, Icon } from 'antd';
 import memoryUtils from "../../utils/memoryUtils";
 import "./admin.less"
 import LeftNav from "../../components/left-nav/left-nav";
+import Header from "../../components/header/header";
 import Home from "../home/home";
 import Category from "../category/category";
 import Product from "../product/product";
@@ -11,7 +12,7 @@ import Role from "../role/role";
 import User from "../user/user";
 import Setting from "../setting/setting";
 
-const { Header,Footer, Sider, Content } = Layout;
+const { Footer, Sider, Content } = Layout;
 
 
 /*
@@ -39,7 +40,7 @@ export default class Admin extends Component {
                     <LeftNav/>
                 </Sider>
                 <Layout>
-                    <Header></Header>
+                    <Header/>
                     <Content style={{margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280,}}>
                        {/*路由控制*/}
                         <Switch>

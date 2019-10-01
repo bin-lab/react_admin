@@ -27,24 +27,16 @@ const menuList = [
         ]
     },
     {
-        title: '库存管理', //菜单标题名称
+        title: '入库管理', //菜单标题名称
         key: '/inHouse', //对应的path
-        icon: 'database', //图标名称
-        color:'#1890FF',//图标颜色
-        children : [
-            {
-                title: '入库管理', //菜单标题名称
-                key: '/inHouse', //对应的path
-                icon: 'right-square', //图标名称
-                color:'#5e72e4',//图标颜色
-            },
-            {
-                title: '出库管理', //菜单标题名称
-                key: '/outHouse', //对应的path
-                icon: 'left-square', //图标名称
-                color:'#5e72e4',//图标颜色
-            }
-        ]
+        icon: 'right-square', //图标名称
+        color:'#5e72e4',//图标颜色
+    },
+    {
+        title: '出库管理', //菜单标题名称
+        key: '/outHouse', //对应的path
+        icon: 'left-square', //图标名称
+        color:'#5e72e4',//图标颜色
     },
     {
         title: '收益管理', //菜单标题名称
