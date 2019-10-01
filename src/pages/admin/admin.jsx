@@ -1,9 +1,15 @@
 import React, {Component} from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Route, Switch} from 'react-router-dom'
 import { Layout, Menu, Icon } from 'antd';
 import memoryUtils from "../../utils/memoryUtils";
 import "./admin.less"
 import LeftNav from "../../components/left-nav/left-nav";
+import Home from "../home/home";
+import Category from "../category/category";
+import Product from "../product/product";
+import Role from "../role/role";
+import User from "../user/user";
+import Setting from "../setting/setting";
 
 const { Header,Footer, Sider, Content } = Layout;
 
@@ -33,18 +39,19 @@ export default class Admin extends Component {
                     <LeftNav/>
                 </Sider>
                 <Layout>
-                    <Header style={{ background: '#fff', padding: 0 }}>
-
-                    </Header>
-                    <Content
-                        style={{
-                            margin: '24px 16px',
-                            padding: 24,
-                            background: '#fff',
-                            minHeight: 280,
-                        }}
-                    >
-                        Content
+                    <Header></Header>
+                    <Content style={{margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280,}}>
+                       {/*路由控制*/}
+                        <Switch>
+                            <Route path='/home' component={Home}/>
+                            <Route path='/category' component={Category}/>
+                            <Route path='/product' component={Product}/>
+                            <Route path='/role' component={Role}/>
+                            <Route path='/user' component={User}/>
+                            <Route path='/setting' component={Setting}/>
+                            {/*默认显示路径*/}
+                            <Redirect to='/home'/>
+                        </Switch>
                     </Content>
                 </Layout>
             </Layout>
