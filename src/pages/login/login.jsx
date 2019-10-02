@@ -52,15 +52,12 @@ import memoryUtils from "../../utils/memoryUtils";
 
                 //请求完成后处理返回的数据状态
                 const result = response.data;
-                //const result = {status:0};
-                if (result.status === 0) {
+                if (result.status === true) {
                     //登陆成功
                     message.success('登陆成功');
 
                     //登陆成功后 存储当前用户信息
-
-                    const user = result.data;
-                    //const user = {"_id":1111,"username":'admin'};
+                    const user = {"_id":result.data.id,"username":result.data.username};
                     //保存用户到内存中
                     memoryUtils.user = user;
                     //保存用户信息到本地持久层
@@ -77,7 +74,7 @@ import memoryUtils from "../../utils/memoryUtils";
 
                 } else {
                     //登陆失败
-                    message.error(result.message);
+                    message.error(result.reason);
                 }
 
 
@@ -117,9 +114,9 @@ import memoryUtils from "../../utils/memoryUtils";
                                 //声明式验证
                                 rules: [
                                     { required: true, whiteSpace:true, message: '用户名必须输入!' },
-                                    { min: 4, message: '用户名至少4位!' },
+                                    { min: 2, message: '用户名至少2位!' },
                                     { max: 12, message: '用户名最多12位!' },
-                                    { pattern: /^[a-zA-Z0-9_]+$/, message: '用户名必须是英文、数字、下划线组成!' }
+                                    // { pattern: /^[a-zA-Z0-9_]+$/, message: '用户名必须是英文、数字、下划线组成!' }
                                     ],
                             })(
                                 <Input

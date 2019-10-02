@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Redirect, Route, Switch} from 'react-router-dom'
-import { Layout, Menu, Icon } from 'antd';
+import { Layout } from 'antd';
 import memoryUtils from "../../utils/memoryUtils";
 import "./admin.less"
 import LeftNav from "../../components/left-nav/left-nav";
