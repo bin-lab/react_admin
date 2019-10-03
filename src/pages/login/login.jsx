@@ -43,9 +43,6 @@ import memoryUtils from "../../utils/memoryUtils";
                 //     console.log("失败了",error)
                 // });
 
-
-                //TODO : 待测试
-
                 //(2)请求登录方法
                const response = await reqlogin(username,password);
 
@@ -57,7 +54,7 @@ import memoryUtils from "../../utils/memoryUtils";
                     message.success('登陆成功');
 
                     //登陆成功后 存储当前用户信息
-                    const user = {"_id":result.data.id,"username":result.data.username};
+                    const user = {"_id":result.data[0].id,"username":result.data[0].username};
                     //保存用户到内存中
                     memoryUtils.user = user;
                     //保存用户信息到本地持久层

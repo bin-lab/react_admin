@@ -7,6 +7,7 @@
 import  ajax from './ajax'
 
 
+const BASE = '';
 
 //登录
 
@@ -17,3 +18,19 @@ export const reqlogin = (username, password) =>
 
 export const reqAddUser = (user) =>
     ajax('/manage/user/add', user, 'POST');
+
+
+/*
+    商品模块
+ */
+
+//商品分类模块
+
+//1> 获取一级/二级分类列表
+export const reqCategorys = (parentId) => ajax(BASE + 'manage/category/list', {parentId});
+
+//2>添加分类数据
+export const reqaddCategory = ({categoryTypeName, parentId}) => ajax(BASE + 'manage/category/add', {categoryTypeName, parentId}, 'POST');
+
+//3>更新分类
+export const reqUpdateCategory = ({categoryLineId, categoryTypeName}) => ajax(BASE + 'manage/category/update', {categoryLineId, categoryTypeName}, 'POST');

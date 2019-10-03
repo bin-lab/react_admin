@@ -28,7 +28,7 @@ export default function ajax(url, data={}, type='GET') {
 
         promise.then(response =>{
             //2.如果成功了，调用 resolve (value)
-            resolve(response);
+            resolve(response.data);
         }).catch(error => {
             //2.如果失败了
             message.error('请求出错：'+ error.message)
