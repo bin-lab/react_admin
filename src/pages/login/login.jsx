@@ -48,7 +48,7 @@ import memoryUtils from "../../utils/memoryUtils";
 
 
                 //请求完成后处理返回的数据状态
-                const result = response.data;
+                const result = response;
                 if (result.status === true) {
                     //登陆成功
                     message.success('登陆成功');

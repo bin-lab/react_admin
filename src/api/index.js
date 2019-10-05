@@ -11,13 +11,11 @@ const BASE = '';
 
 //登录
 
-export const reqlogin = (username, password) =>
-    ajax('/login', {username, password}, 'POST');
+export const reqlogin = (username, password) => ajax('/login', {username, password}, 'POST');
 
 //添加用户
 
-export const reqAddUser = (user) =>
-    ajax('/manage/user/add', user, 'POST');
+export const reqAddUser = (user) => ajax('/manage/user/add', user, 'POST');
 
 
 /*
@@ -30,7 +28,10 @@ export const reqAddUser = (user) =>
 export const reqCategorys = (parentId) => ajax(BASE + 'manage/category/list', {parentId});
 
 //2>添加分类数据
-export const reqaddCategory = ({categoryTypeName, parentId}) => ajax(BASE + 'manage/category/add', {categoryTypeName, parentId}, 'POST');
+export const reqAddCategory = ({categoryTypeName, parentId}) => ajax(BASE + 'manage/category/add', {categoryTypeName, parentId}, 'POST');
 
 //3>更新分类
 export const reqUpdateCategory = ({categoryLineId, categoryTypeName}) => ajax(BASE + 'manage/category/update', {categoryLineId, categoryTypeName}, 'POST');
+
+
+export const reqwest = (results) =>ajax('https://randomuser.me/api',{results},'GET');

@@ -2,7 +2,7 @@ const menuList = [
     {
         title: '首页', //菜单标题名称
         key: '/home', //对应的path
-        icon: 'project', //图标名称
+        icon: 'home', //图标名称
         color:'#5e72e4',//图标颜色
     },
     {
@@ -28,13 +28,13 @@ const menuList = [
     },
     {
         title: '入库管理', //菜单标题名称
-        key: '/inHouse', //对应的path
+        key: '/in_house', //对应的path
         icon: 'right-square', //图标名称
         color:'#5e72e4',//图标颜色
     },
     {
         title: '出库管理', //菜单标题名称
-        key: '/outHouse', //对应的path
+        key: '/out_house', //对应的path
         icon: 'left-square', //图标名称
         color:'#5e72e4',//图标颜色
     },

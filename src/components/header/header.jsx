@@ -74,7 +74,9 @@ class Header extends Component {
         menuList.forEach(item =>{
             //如果当前item对象的key与path一样，item的title就是需要显示的title
             if (item.key === path) {
-                title = item.title;
+                if ('/home'!= path) {
+                    title = item.title;
+                }
             } else if (item.children) {
                 //在所有的子 item 查找匹配的
                 const cItem = item.children.find(cItem => cItem.key === path);
@@ -106,7 +108,6 @@ class Header extends Component {
                         content={<div className='dropdown'>
                             <a><Icon type="user"/> <span>个人中心</span></a>
                             <a><Icon type="setting"/> <span>个人设置</span></a>
-                            <div className='dropdown-divider'></div>
                             <a onClick={this.logout}>
 
                             <Icon type="logout"/> <span>退出登录</span></a>

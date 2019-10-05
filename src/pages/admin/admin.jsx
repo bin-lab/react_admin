@@ -8,6 +8,9 @@ import Header from "../../components/header/header";
 import Home from "../home/home";
 import Category from "../category/category";
 import Product from "../product/product";
+import InHouse from "../in_house/in_house";
+import InHouseDetail from "../in_house/in_house_detail";
+import OutHouse from "../out_house/out_house";
 import Role from "../role/role";
 import User from "../user/user";
 import Setting from "../setting/setting";
@@ -47,6 +50,9 @@ export default class Admin extends Component {
                             <Route path='/home' component={Home}/>
                             <Route path='/category' component={Category}/>
                             <Route path='/product' component={Product}/>
+                            <Route path='/in_house' component={InHouse}/>
+                            <Route path='/in_house_detail' component={InHouseDetail}/>
+                            <Route path='/out_house' component={OutHouse}/>
                             <Route path='/role' component={Role}/>
                             <Route path='/user' component={User}/>
                             <Route path='/setting' component={Setting}/>
