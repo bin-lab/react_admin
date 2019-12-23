@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ProTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {
     Form,
     Input
@@ -13,8 +13,8 @@ const Item = Form.Item;
 class UpdateForm extends Component{
 
     static propTypes = {
-        categoryTypeName: ProTypes.string.isRequired,
-        setForm: ProTypes.func.isRequired
+        categoryTypeName: PropTypes.string.isRequired,
+        setForm: PropTypes.func.isRequired
     };
 
     //调用render()前操作

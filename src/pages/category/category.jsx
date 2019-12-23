@@ -83,12 +83,12 @@ export default class Category extends Component {
             }
 
         } else {
-            notification.warning({
-                message: '操作提示',
-                description:
-                    '获取分类列表数据失败',
-                placement: 'bottomRight'
-            });
+            // notification.warning({
+            //     message: '操作提示',
+            //     description:
+            //         '获取分类列表数据失败',
+            //     placement: 'bottomRight'
+            // });
         }
     };
 
@@ -237,7 +237,11 @@ export default class Category extends Component {
                         onOk={this.addCategory}
                         onCancel={this.handleCancel}
                     >
-                        <AddForm/>
+                        <AddForm
+                            categorys={categorys}
+                            parentId={parentId}
+                            setForm={(form) => {this.form = form}}
+                        />
                     </Modal>
 
 
@@ -250,9 +254,7 @@ export default class Category extends Component {
                     >
                         <UpdateForm
                             categoryTypeName={category.categoryTypeName}
-                            setForm={(form) => {
-                                this.form = form
-                            }}
+                            setForm={(form) => {this.form = form}}
                         />
 
                     </Modal>

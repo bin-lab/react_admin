@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {
     Form,
     Select,
@@ -13,7 +14,20 @@ const Option = Select.Option;
 
 class AddForm extends Component{
 
+    static propTypes = {
+        categorys: PropTypes.array.isRequired,//一级分类数组
+        parentId: PropTypes.string.isRequired, //父级分类ID
+        setForm: PropTypes.func.isRequired
+    };
+
+    componentWillMount(){
+        this.props.setForm(this.props.form);
+    }
+
     render(){
+
+
+        const {categorys, parentId} = this.props;
 
         const { getFieldDecorator } = this.props.form;
 
@@ -22,12 +36,15 @@ class AddForm extends Component{
                 <Item>
                     {
                         getFieldDecorator('parentId',{
-                            initialValue:'0'
+                            initialValue:parentId
                         })(
                             <Select>
                                 <Option value='0'>一级分类</Option>
-                                <Option value='1'>耐克</Option>
-                                <Option value='2'>阿迪达斯</Option>
+                                {
+                                    categorys.map(
+                                        (c,index) => <Option key={index} value={c.categoryLineId}>{c.categoryTypeName}</Option>
+                                    )
+                                }
                             </Select>
                         )
                     }
