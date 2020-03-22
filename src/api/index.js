@@ -11,11 +11,11 @@ const BASE = '';
 
 //登录
 
-export const reqlogin = (username, password) => ajax('/login', {username, password}, 'POST');
+export const reqlogin = (username, password) => ajax('/user/login', {username, password}, 'POST');
 
 //添加用户
 
-export const reqAddUser = (user) => ajax('/manage/user/add', user, 'POST');
+export const reqAddUser = (user) => ajax('/user/register', user, 'POST');
 
 
 /*

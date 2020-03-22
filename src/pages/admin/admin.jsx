@@ -35,7 +35,7 @@ export default class Admin extends Component {
 
         //如果内存中没有user 说明当前没有登录
         if (!user || !user._id) {
-            return <Redirect to='/login'/>
+            return <Redirect to='/user/login'/>
         }
         return (
             <Layout style={{height:'100%'}}>

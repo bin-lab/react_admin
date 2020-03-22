@@ -8,15 +8,17 @@
 
 import axios from 'axios'
 import {message} from 'antd'
+import memoryUtils from "../utils/memoryUtils";
+import storageUtils from "../utils/storageUtils";
 
 export default function ajax(url, data={}, type='GET') {
-
+    console.log(memoryUtils.user.token);
     return new Promise((resolve, reject) => {
 
         let promise;
 
         //1.执行异步ajax请求
-
+        axios.defaults.headers.common["token"] = memoryUtils.user.token;
         if (type === 'GET') {
             promise = axios.get(url, {params: data});
         } else {
@@ -27,7 +29,7 @@ export default function ajax(url, data={}, type='GET') {
 
         promise.then(response =>{
             //2.如果成功了，调用 resolve (value)
-            resolve(response.data);
+            resolve(response);
         }).catch(error => {
             console.log(error);
             //2.如果失败了

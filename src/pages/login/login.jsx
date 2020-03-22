@@ -12,6 +12,14 @@ import memoryUtils from "../../utils/memoryUtils";
 
  class Login extends Component {
 
+     state = {
+         loading: false
+     };
+
+     enterLoading = () => {
+         this.setState({ loading: true });
+     };
+
     //提交方法
     handleSubmit = (event) => {
         //阻止事件的默认提交功能额
@@ -46,15 +54,16 @@ import memoryUtils from "../../utils/memoryUtils";
                 //(2)请求登录方法
                const response = await reqlogin(username,password);
 
-
                 //请求完成后处理返回的数据状态
-                const result = response;
-                if (result.status === true) {
+                const result = response.data;
+                console.log(result);
+                if (result.success === true) {
+                    console.log(response);
                     //登陆成功
                     message.success('登陆成功');
 
                     //登陆成功后 存储当前用户信息
-                    const user = {"_id":result.data[0].id,"username":result.data[0].username};
+                    const user = {"_id":result.datas[0].id,"username":result.datas[0].username,"token":response.headers.token};
                     //保存用户到内存中
                     memoryUtils.user = user;
                     //保存用户信息到本地持久层
@@ -71,11 +80,13 @@ import memoryUtils from "../../utils/memoryUtils";
 
                 } else {
                     //登陆失败
-                    message.error(result.reason);
+                    message.error('登陆失败');
+                    this.setState({loading: false});
                 }
 
 
             } else {
+                this.setState({loading: false});
                 console.log('校验失败');
             }
         });
@@ -140,10 +151,10 @@ import memoryUtils from "../../utils/memoryUtils";
                             <a className="login-form-forgot" href="">
                                 忘记密码
                             </a>
-                            <Button type="primary" htmlType="submit" className="login-form-button">
+                            <Button type="primary" htmlType="submit" loading={this.state.loading} onClick={this.enterLoading} className="login-form-button">
                                 确认登陆
                             </Button>
-                            或者 <a href="">创建用户!</a>
+                            或者 <a href="/user/register">创建用户!</a>
                         </Form.Item>
                     </Form>
                 </section>
