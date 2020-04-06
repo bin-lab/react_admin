@@ -50,9 +50,6 @@ const columns = [
         loading: false,
     };
 
-    componentDidMount() {
-        this.fetch();
-    }
 
     handleTableChange = (pagination, filters, sorter) => {
         const pager = { ...this.state.pagination };
@@ -89,7 +86,12 @@ const columns = [
 
     };
 
-    render(){
+     componentDidMount() {
+         this.fetch();
+     }
+
+
+     render(){
 
         const { getFieldDecorator } = this.props.form;
         return (

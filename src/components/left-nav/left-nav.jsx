@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import logo from "../../assets/images/blue.png";
-import menuList from "../../config/menuConfig";
+import menuList from "../../utils/menuConfig";
+import memoryUtils from "../../utils/memoryUtils";
+import {getRoutes, reqRoles} from '../../api/index'
 
 import {Link, withRouter} from 'react-router-dom';
 import { Menu, Icon } from 'antd';
@@ -10,6 +12,8 @@ import { Menu, Icon } from 'antd';
 const { SubMenu } = Menu;
 
 class leftNav extends Component {
+
+    state ={menuList:[]};
 
     //根据menu得数据数组生成标签数组(map集合)
     getMenuNodes = (menuList) => {
@@ -57,6 +61,18 @@ class leftNav extends Component {
         })
     };
 
+    getMenuList = async () =>{
+        const result = await getRoutes(memoryUtils.user.userId);
+        if (result.success) {
+            console.log(result);
+            //const menuList = result.data;
+
+            // this.setState({
+            //     menuList
+            // });
+        }
+    };
+
     /*
         在第一次render()之前执行，执行一次
         为第一次render()准备数据（必须同步）
@@ -65,6 +81,11 @@ class leftNav extends Component {
 
         this.menuNodes =  this.getMenuNodes(menuList);
     }
+
+
+    componentDidMount (){
+        this.getMenuList();
+    };
 
 
     render() {
@@ -80,7 +101,6 @@ class leftNav extends Component {
                 <Link to='/' className="logo">
                     <img src={logo} alt='logo'/>
                 </Link>
-
                 <Menu
                     mode="inline"
                     selectedKeys={[path]}

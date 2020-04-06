@@ -160,7 +160,7 @@ class Register extends Component{
                                         message: "请输入密码",
                                     },
                                     {
-                                        pattern: /^\d{8}$/,
+                                        min: 8,
                                         message: "密码最少8位数",
                                     },
                                 ],

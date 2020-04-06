@@ -58,12 +58,9 @@ import memoryUtils from "../../utils/memoryUtils";
                 const result = response.data;
                 console.log(result);
                 if (result.success === true) {
-                    console.log(response);
-                    //登陆成功
-                    message.success('登陆成功');
 
                     //登陆成功后 存储当前用户信息
-                    const user = {"_id":result.datas[0].id,"username":result.datas[0].username,"token":response.headers.token};
+                    const user = {"userId":result.datas[0].id,"username":result.datas[0].username,"Authorization":response.headers.token};
                     //保存用户到内存中
                     memoryUtils.user = user;
                     //保存用户信息到本地持久层
@@ -79,15 +76,12 @@ import memoryUtils from "../../utils/memoryUtils";
 
 
                 } else {
-                    //登陆失败
-                    message.error('登陆失败');
                     this.setState({loading: false});
                 }
 
 
             } else {
                 this.setState({loading: false});
-                console.log('校验失败');
             }
         });
         //获得form对象

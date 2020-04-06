@@ -15,7 +15,12 @@ export const reqlogin = (username, password) => ajax('/user/login', {username, p
 
 //添加用户
 
-export const reqAddUser = (user) => ajax('/user/register', user, 'POST');
+export const reqAddUser = (user) => ajax(BASE +'/user/register', user, 'POST');
+
+
+//更新用户
+export const updateUser = (user) => ajax(BASE +'/user/updateUser', user, 'POST');
+
 
 
 /*
@@ -35,3 +40,23 @@ export const reqUpdateCategory = ({categoryLineId, categoryTypeName}) => ajax(BA
 
 
 export const reqwest = (results) =>ajax('https://randomuser.me/api',{results},'GET');
+
+
+/*
+    菜单路由获取
+ */
+export const getRoutes = (userId) => ajax(BASE + 'sys/menu/24', {userId}, 'GET');
+
+export const updateMenu = (menu) => ajax(BASE + 'sys/menu/updateMenu', menu, 'POST');
+
+
+
+//获取所有角色的列表
+
+export const  reqRoles = () => ajax(BASE +'manage/role/list','POST');
+
+//添加角色信息
+export const  reqAddRole = (role) =>ajax(BASE +'/role/register',role,'POST');
+
+//更新角色权限信息
+export const  updateAuthRole = (role) =>ajax(BASE +'/role/updateAuth',role,'POST');

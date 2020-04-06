@@ -9,14 +9,17 @@
     "customize-cra": "^0.8.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
-    "prop-types": "latest",
+    "markdown-it": "^10.0.0",
+    "prop-types": "^15.7.2",
     "react": "^16.10.1",
     "react-app-rewired": "^2.1.3",
     "react-dom": "^16.10.1",
+    "react-markdown-editor-lite": "^1.0.2",
     "react-router-dom": "^5.1.1",
     "react-scripts": "3.1.2",
     "redux-actions": "^2.6.5",
-    "store": "^2.0.12"
+    "store": "^2.0.12",
+    "xlsx": "^0.15.6"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -39,5 +42,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://192.168.0.109:8080"
+  "proxy": "http://192.168.0.113:8080"
 }

@@ -7,18 +7,19 @@
  */
 
 import axios from 'axios'
-import {message} from 'antd'
+import {notification} from 'antd'
 import memoryUtils from "../utils/memoryUtils";
 import storageUtils from "../utils/storageUtils";
 
+
+
 export default function ajax(url, data={}, type='GET') {
-    console.log(memoryUtils.user.token);
     return new Promise((resolve, reject) => {
 
         let promise;
 
         //1.执行异步ajax请求
-        axios.defaults.headers.common["token"] = memoryUtils.user.token;
+        axios.defaults.headers.common["Authorization"] = memoryUtils.user.Authorization;
         if (type === 'GET') {
             promise = axios.get(url, {params: data});
         } else {
@@ -31,9 +32,22 @@ export default function ajax(url, data={}, type='GET') {
             //2.如果成功了，调用 resolve (value)
             resolve(response);
         }).catch(error => {
+            //message.error('请求出错：'+ error.message);
+            notification.error({
+                message: '错误',
+                description:error.message,
+                placement:'bottomRight'
+            });
             console.log(error);
-            //2.如果失败了
-            message.error('请求出错：'+ error.message)
+            // //2.如果失败了
+            // if ('500' == error.request.status) {
+            //     window.location.href = "http://localhost:3000/error/500.html"
+            // } else if ('404' == error.request.status) {
+            //     window.location.href = "http://localhost:3000/error/404.html"
+            // } else {
+            //     message.error('请求出错：'+ error.message)
+            // }
+
         })
 
     });

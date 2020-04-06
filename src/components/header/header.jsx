@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom';
-import {Icon, Popover, Modal} from 'antd';
+import {Link, withRouter} from 'react-router-dom';
+import {Icon, Popover, Modal, Affix} from 'antd';
 import './header.less'
 import {formateDate} from "../../utils/dateUtils";
 import memoryUtils from "../../utils/memoryUtils";
-import menuList from "../../config/menuConfig";
+import menuList from "../../utils/menuConfig";
 import storageUtils from "../../utils/storageUtils";
+import logo from "../../assets/images/blue.png";
 
 
 /*
@@ -74,7 +75,7 @@ class Header extends Component {
         menuList.forEach(item =>{
             //如果当前item对象的key与path一样，item的title就是需要显示的title
             if (item.key === path) {
-                if ('/home'!= path) {
+                if ('/app/home'!= path) {
                     title = item.title;
                 }
             } else if (item.children) {
@@ -101,8 +102,10 @@ class Header extends Component {
         const title = this.getTitle();
 
         return (
+
             <div className='header'>
                 <div className='header-top'>
+
                     <span>{currentTime}</span>
                     <Popover
                         content={<div className='dropdown'>
